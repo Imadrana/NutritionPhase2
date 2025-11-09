@@ -10,15 +10,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-      with:
-        submodules: recursive  # This ensures all submodules are checked out
+      # Remove submodules: recursive option
 
     - name: Set up Node.js
       uses: actions/setup-node@v3
       with:
         node-version: '18'
 
-    - name: Install Dependencies
+    - name: Install Frontend Dependencies
       run: |
         cd frontend
         npm install
