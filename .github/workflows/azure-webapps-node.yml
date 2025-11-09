@@ -10,22 +10,32 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-      # Remove submodules: recursive option
 
     - name: Set up Node.js
       uses: actions/setup-node@v3
       with:
         node-version: '18'
 
+    - name: Show Node.js and npm versions
+      run: |
+        node --version
+        npm --version
+
     - name: Install Frontend Dependencies
       run: |
         cd frontend
         npm install
+        
+    - name: List installed packages
+      run: |
+        cd frontend
+        npm list
 
     - name: Build Frontend
       run: |
         cd frontend
         npm run build
+        ls dist  # List contents of dist folder
 
     - name: Deploy to Azure Static Web Apps
       id: builddeploy
